@@ -1,0 +1,20 @@
+{
+    "name": "remote-transaction",
+    "dockerComposeFile": [
+        "../docker-compose-vscode-dev.yml"
+    ],
+    "service": "server",
+    "workspaceFolder": "/workspace",
+    "shutdownAction": "none",
+    "remoteUser": "vscode",
+    "extensions": [
+        "vscjava.vscode-java-pack",
+        // // "redhat.vscode-xml",
+        // "vscjava.vscode-spring-initializr",
+        // "ecmel.vscode-spring-boot",
+        // "Pivotal.vscode-boot-dev-pack",
+        // "Pivotal.vscode-spring-boot",
+        // "gabrielbb.vscode-lombok"
+    ],
+    "settings": {}
+}
