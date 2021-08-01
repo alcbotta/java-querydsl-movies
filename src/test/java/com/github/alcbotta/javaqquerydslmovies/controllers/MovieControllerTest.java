@@ -63,7 +63,7 @@ public class MovieControllerTest {
     }
 
     @Test
-    public void testList_emptyParameters_ExpectSuccess() throws Exception {
+    public void testFindById_1_ExpectSuccess() throws Exception {
 
 
         String finalEndpoint = String.format("http://localhost:%s/%s/%s/%d", port, baseURL, endpoint, 1);
@@ -74,6 +74,52 @@ public class MovieControllerTest {
         String resultBody = result.getResponse().getContentAsString();
         Movie m = gson.fromJson (resultBody, Movie.class);
         assertEquals("tropa de elite", m.getName());
+
+    }
+
+    @Test
+    public void testFindById_2_ExpectSuccess() throws Exception {
+
+        /**
+         select
+         movie0_.id as id1_1_0_,
+         movie0_.name as name2_1_0_,
+         actors1_.movie_id as movie_id1_2_1_,
+         actor2_.id as actors_i2_2_1_,
+         actor2_.id as id1_0_2_,
+         actor2_.name as name2_0_2_
+         from
+         movies movie0_
+         left outer join
+         movies_actors actors1_
+         on movie0_.id=actors1_.movie_id
+         left outer join
+         actors actor2_
+         on actors1_.actors_id=actor2_.id
+         where
+         movie0_.id=?
+         */
+
+
+        /**
+         select
+         movie0_.id as id1_1_0_,
+         movie0_.name as name2_1_0_
+         from
+         movies movie0_
+         where
+         movie0_.id=?
+         */
+        String finalEndpoint = String.format("http://localhost:%s/%s/%s/%d", port, baseURL, endpoint, 2);
+        MvcResult result = this.mockMvc.perform(get(finalEndpoint)).andReturn();
+
+        assertNotNull(result);
+        String resultBody = result.getResponse().getContentAsString();
+        assertEquals(HttpStatus.OK.value(), result.getResponse().getStatus());
+
+
+        Movie m = gson.fromJson (resultBody, Movie.class);
+        assertEquals("star wars", m.getName());
 
     }
 }
