@@ -89,4 +89,13 @@ public class MovieServiceTest {
 
     }
 
+    @Test
+    public void testFindByID_DTO_withCrew_ExpectSucess(){
+        Optional<MovieDTO> m = movieService.findByIdDto(3L);
+        Assert.assertTrue(m.isPresent());
+        Gson gson = new Gson();
+        String s = gson.toJson(m);
+
+    }
+
 }

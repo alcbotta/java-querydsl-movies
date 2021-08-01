@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -18,17 +20,17 @@ import javax.persistence.Table;
 @Builder
 @Data
 @Entity
-@Table(name = "actors")
-public class Actor {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Table(name = "crew_members")
+public class CrewMember {
     @Id
-    @SequenceGenerator(initialValue = 1, name = "actor_id_gen", sequenceName = "actor_id_gen")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "actor_id_gen")
+    @SequenceGenerator(initialValue = 1, name = "crew_members_id_gen", sequenceName = "crew_members_id_gen")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "crew_members_id_gen")
     private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "alias", nullable = true)
-    private String alias;
-
+    @Column(name = "role", nullable = true)
+    private String role;
 }

@@ -1,6 +1,7 @@
 package com.github.alcbotta.javaqquerydslmovies.dto.movie.find;
 
 import com.github.alcbotta.javaqquerydslmovies.models.Actor;
+import com.github.alcbotta.javaqquerydslmovies.models.CrewMember;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,4 +25,5 @@ public class MovieDTO {
     private Long id;
     private String name;
     private Set<Actor> actors;
+    private Set<CrewMember> crew;
 }
